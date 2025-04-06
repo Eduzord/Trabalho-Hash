@@ -1,10 +1,11 @@
 from funcoes import *
 
+#Utilizando o SimpleSQLiteBrowser para visualizar o banco de dados;
 
 controle_menu = True
 
 while controle_menu:
-    opcao = input("Selecione uma opção \n1 - Cadastro\n2 - Login\n3 - Pesquisa no BD")
+    opcao = input("Selecione uma opção \n1 - Cadastro\n2 - Login\n3 - Pesquisa no BD\n4 - Encerrar programa\n")
 
     if opcao == '1':
 
@@ -20,12 +21,21 @@ while controle_menu:
 
         cadastra_usuario_BD(email,senha)
 
-    if opcao == '2':
-        controle_opcao_validacao = True
+    elif opcao == '2':
         email = loop_email()
-        senha = input("Insira sua senha: ")
-        senha = gerador_de_hash(senha)
+        senha = gerador_de_hash(input("Insira sua senha: "))
+        verifica_cadastro_BD(email,senha)
 
+    elif opcao == '3':
+        email = loop_email()
+        retorna_hash_com_email(email)
+
+    elif opcao == '4':
+        print('Encerrando programa...')
+        controle_menu = False
+
+    else:
+        print("Opção inválida.")
 
 
 
